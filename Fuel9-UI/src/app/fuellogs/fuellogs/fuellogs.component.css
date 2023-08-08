@@ -1,0 +1,20 @@
+label {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+p {
+    font-size: 1.3rem;
+}
+
+h3 {
+    text-align: center;
+}
+
+.centered {
+    margin: 0.1em auto;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}

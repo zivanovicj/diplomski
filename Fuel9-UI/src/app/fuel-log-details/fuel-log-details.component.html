@@ -1,0 +1,44 @@
+<div *ngIf="showInfo" class="fuel-log-details">
+    <form [formGroup]="updateFuelLogForm">
+        <div class="row">
+            <div class="col">
+                <label for="amount" class="form-label">Amount:</label>
+                <input type="number" class="form-control" id="amount" formControlName="amount">
+            </div>
+            <div class="col">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" formControlName="price">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="fuelType" class="form-label">Fuel Type:</label>
+                <select class="form-control" id="fuelType">
+                    <option *ngFor="let type of fuelTypes" [value]="type" [selected]="type.toLowerCase()=== fuelLog.fuelType">{{type}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="distance" class="form-label">Distance:</label>
+                <input type="number" class="form-control" id="distance" formControlName="distance">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="totalOdometer" class="form-label">Total odometer:</label>
+                <input type="number" class="form-control" id="totalOdometer" formControlName="totalOdometer">
+            </div>
+            <div class="col">
+                <label for="refuelTime" class="form-label">Refuel Time:</label>
+                <input type="datetime-local" class="form-control" id="refuelTime" [value]="fuelLog.refuelTime">
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-2">
+                <button type="submit" class="btn btn-success" style="background-color: rgb(26, 101, 176);" [disabled]="!updateFuelLogForm.valid" (click)="onUpdate()">Update Fuel Log</button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-success" style="background-color: rgb(186, 55, 55);" (click)="onDelete()">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>

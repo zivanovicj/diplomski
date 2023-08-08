@@ -1,0 +1,63 @@
+<div class="add-vehicle">
+    <form [formGroup]="newVehicleForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col">
+                <label for="manufacturer" class="form-label">Manufacturer:</label>
+                <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer">
+            </div>
+            <div class="col">
+                <label for="model" class="form-label">Model:</label>
+                <input type="text" class="form-control" id="model" formControlName="model">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="yearOfProduction" class="form-label">Year of production:</label>
+                <input type="number" class="form-control" id="yearOfProduction" formControlName="yearOfProduction">
+            </div>
+            <div class="col">
+                <label for="enginePower" class="form-label">Engine power:</label>
+                <input type="number" class="form-control" id="enginePower" formControlName="enginePower">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="vehicleType" class="form-label">Type of vehicle:</label>
+                <select class="form-control" id="vehicleType" formControlName="vehicleType">
+                    <option *ngFor="let type of vehicleTypes" [value]="type">{{type}}</option>
+                </select>
+            </div>
+            <div class="col">
+                <label for="transmission" class="form-label">Transmission:</label>
+                <select class="form-control" id="transmission" formControlName="transmission">
+                    <option *ngFor="let type of transmissionTypes" [value]="type">{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="odometer" class="form-label">Odometer:</label>
+                <input type="number" class="form-control" id="odometer" formControlName="odometer">
+            </div>
+            <div class="col">
+                <label for="odometerUnit" class="form-label">Odometer unit:</label>
+                <select class="form-control" id="odometerUnit" formControlName="odometerType">
+                    <option *ngFor="let type of odometerUnits" [value]="type">{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="fuelType" class="form-label">Type of fuel:</label>
+                <select class="form-control" id="fuelType" formControlName="fuelType">
+                    <option *ngFor="let type of fuelTypes" [value]="type">{{type}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success" style="background-color: slategrey;" [disabled]="!newVehicleForm.valid">Add</button>
+            </div>
+        </div>
+    </form>
+</div>

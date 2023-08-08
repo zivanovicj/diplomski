@@ -1,0 +1,63 @@
+<body  style="background-color:white; margin: 150px;" *ngIf="statsIsLoaded">
+      <div class="mb-3" style="padding: 15px;">
+        <form class="row g-3" [formGroup]="updateVehicleForm" >
+            <div class="col-md-4">
+              <label class="form-label">Manufacturer</label>
+              <input class="form-control" type="text" formControlName="Manufacturer" value="{{vehicle.manufacturer}}" style="border: 1px solid #636b7b">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Year of production</label>
+              <input class="form-control" type="text" formControlName="YearOfProduction" value="{{vehicle.yearOfProduction}}" style="border: 1px solid #636b7b">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Model</label>
+              <input class="form-control" type="text" formControlName="Model" value="{{vehicle.model}}" style="border: 1px solid #636b7b">
+            </div>
+            <div class="col-md-4" style="padding-top: 10px;">
+              <label class="form-label">Odometer</label><br>
+              <input class="form-control" type="text" formControlName="Odometer" value="{{vehicle.odometer}}" style="border: 1px solid #636b7b">
+            </div>
+            <div class="col-md-4" style="padding-top: 10px;">
+                <label class="form-label">Odometer type</label>
+                <select class="form-control" style="border: 1px solid #636b7b" id="OdometerType" >
+                  <option value="metric" [selected]="vehicle.odometerType === 'METRIC'">METRIC</option>                
+                  <option value="imperial" [selected]="vehicle.odometerType === 'IMPERIAL'">IMPERIAL</option>                
+                </select>
+              </div>
+            <div class="col-md-4" style="padding-top: 10px;" >
+              <label class="form-label">Engine power</label>
+              <input class="form-control" type="text" formControlName="EnginePower" value="{{vehicle.enginePower}}" style="border: 1px solid #636b7b">
+            </div>
+            <div class="col-md-4" style="padding-top: 10px;">
+                <label class="form-label">Vehicle type</label><br>
+                <select class="form-control" style="border: 1px solid #636b7b" id="VehicleType">
+                  <option value="scooter" [selected]="vehicle.vehicleType === 'SCOOTER'">SCOOTER</option>
+                  <option value="car" [selected]="vehicle.vehicleType === 'CAR'">CAR</option>        
+                  <option value="bus" [selected]="vehicle.vehicleType === 'BUS'">BUS</option>               
+                  <option value="motorcycle" [selected]="vehicle.vehicleType === 'MOTORCYCLE'">MOTORCYCLE</option>                 
+                  <option value="truck" [selected]="vehicle.vehicleType === 'TRUCK'">TRUCK</option>                             
+                </select>
+              </div>
+              <div class="col-md-4" style="padding-top: 10px;" >
+                <label class="form-label">Fuel type</label>
+                <select class="form-control" style="border: 1px solid #636b7b" id="FuelType">
+                  <option value="diesel" [selected]="vehicle.fuelType === 'DIESEL'">DIESEL</option>               
+                  <option value="petrol" [selected]="vehicle.fuelType === 'PETROL'">PETROL</option>              
+                  <option value="lpg" [selected]="vehicle.fuelType === 'LPG'">LPG</option>                     
+                </select>
+              </div>
+              <div class="col-md-4" style="padding-top: 10px;">
+                <label class="form-label">Transmission</label>
+                <select class="form-control" style="border: 1px solid #636b7b" id="Transmission">
+                  <option value="manual" [selected]="vehicle.transmission === 'MANUAL'">MANUAL</option>                
+                  <option value="automatic" [selected]="vehicle.transmission === 'AUTOMATIC'">AUTOMATIC</option>              
+                  <option value="semi_automatic" [selected]="vehicle.transmission === 'SEMI_AUTOMATIC'">SEMI-AUTOMATIC</option>                          
+                </select>
+              </div>         
+            <div class="col-12" style="margin-top: 50px;">
+              <button class="btn btn-primary" type="submit" style="border-color: white;" [disabled]="!updateVehicleForm.valid" (click)="onSubmit()">Update vehicle</button>
+              <button class="btn btn-primary" type="submit" style="margin-left: 30px;background-color: red;border-color: white;" (click)="onDelete()">Delete vehicle</button>
+            </div>         
+          </form>
+      </div>
+    </body>

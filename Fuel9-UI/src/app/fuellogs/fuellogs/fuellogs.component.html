@@ -1,0 +1,51 @@
+<h3>Fuel log statistics</h3>
+<div *ngIf="statsIsLoaded">
+  <div>
+    <div class="centered">
+      <label for="CO2 Emission">CO2 Emission: </label>
+    </div>
+    <div class="centered">
+      <p name="CO2 Emission">{{ vehicleStats.cO2Emission.toFixed(2) }} / {{unit}}</p>
+    </div> 
+  </div>
+  <div>
+    <div class="centered">
+      <label for="Average Fuel price">Average fuel price (per liter): </label>
+    </div>
+    <div class="centered">
+      <p name="Average Fuel price">{{ vehicleStats.averageFuelPrice.toFixed(2) }} €</p>
+    </div> 
+  </div>
+  <div>
+    <div class="centered">
+      <label for="Average fuel consumption">Average fuel consumption: </label>
+    </div>
+    <div class="centered">
+      <p name="Average fuel consumption">{{ vehicleStats.averageFuelConsumption.toFixed(2) }} / {{unit}}</p>
+    </div> 
+  </div>
+</div>
+
+
+<h3>All fuel logs</h3>
+<table class="table table-hover" style="max-width: 70%; margin: auto;">
+    <thead>
+      <tr>
+        <th *ngFor="let td of tds" scope="col">{{ td }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fuelLog of fuelLogs">
+        <td>{{ fuelLog.fuelType.toString().split('_').join(' ').toLowerCase() }}</td>
+        <td>{{ fuelLog.amount }}</td>
+        <td>{{ fuelLog.price }}</td>
+        <td>{{ fuelLog.refuelTime.toString().split('T')[0] }}</td>
+        <td>
+            <button class="btn btn-success" style="background-color: slategrey;" (click)="onFuelLogDetails(fuelLog.id)">Details</button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+<div class="centered">
+  <button class="btn btn-success" style="background-color: rgb(38, 21, 126); width: 20%;" (click)="clickAddFuellog()">Add fuel log</button>
+</div>

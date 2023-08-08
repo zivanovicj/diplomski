@@ -1,0 +1,55 @@
+<br>
+<h3>Add fuel log </h3>
+<div class="add-fuellog">
+    <form [formGroup]="newFuellogForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col">
+                <label for="amount" class="form-label">Amount:</label>
+                <input type="number" class="form-control" id="amount" formControlName="amount" min="0">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="price" class="form-label">Price:</label>
+                <input type="number" class="form-control" id="price" formControlName="price" min="0">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="distance" class="form-label">Distance:</label>
+                <input type="number" class="form-control" id="distance" formControlName="distance" min="0" (input)="validate()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="totalOdometer" class="form-label">Total odometer:</label>
+                <input type="number" class="form-control" id="totalOdometer" formControlName="totalOdometer" min="0" (input)="validate()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="refuelTime" class="form-label">Refuel date:</label>
+                <input type="date" class="form-control" id="refuelTime" formControlName="refuelTime">
+            </div>
+        </div>
+        <div class="row" style="align-items: center;">
+            <div class="col-sm-8">
+                <label for="fuelType" class="form-label">Type of fuel:</label>
+                <select class="form-control" id="fuelType" formControlName="fuelType">
+                    <option *ngFor="let type of fuelTypes" [value]="type">{{type.split('_').join(' ')}}</option>
+                </select>
+            </div>
+            <div style="margin-top: 2.1rem;">
+                <div class="form-control">
+                    <input type="checkbox" id="fullTank" name="fullTank" formControlName="fullTank"/>  
+                    <label for="fullTank">Full Tank</label>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success" style="background-color: slategrey;" [disabled]="!newFuellogForm.valid || !atLeastOne">Add</button>
+            </div>
+        </div>
+    </form>
+</div>
