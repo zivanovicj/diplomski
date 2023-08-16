@@ -1,5 +1,16 @@
 ﻿version: "3.9"  # optional since v1.27.0
 services:
+  angular_app:
+    build:
+      context: ../../Fuel9-UI
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    command: ["ng", "serve", "--host", "0.0.0.0", "--port", "4200", "--disable-host-check", "--prod"]
+    networks:
+      - mynetwork
+    depends_on:
+      - web_api
   web_api:
     build:
     # build from Dockerfile
