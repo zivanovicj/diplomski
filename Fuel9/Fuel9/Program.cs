@@ -9,7 +9,9 @@ using Fuel9.Repository;
 using Fuel9.Repository.Interfaces;
 using Fuel9.Services;
 using Fuel9.Validators;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +22,14 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(p => p.AddPolicy("cors", builder =>
+builder.Services.AddCors(options =>
 {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-}));
+    options.AddPolicy(name: "cors",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+                      });
+});
 
 var mapperConfig = new MapperConfiguration(mc =>
 {
@@ -49,7 +55,6 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<Fuel9DbContext>();
-    dbContext.Database.EnsureCreated();
     dbContext.Database.Migrate();
 }
 
